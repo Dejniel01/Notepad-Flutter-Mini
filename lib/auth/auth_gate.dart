@@ -17,7 +17,7 @@ class AuthGate extends StatelessWidget {
           case LoginError:
             return LoginPage(key: key, error: (state as LoginError).error);
           case LoggedIn:
-            return const LandingPage();
+            return LandingPage(user: (state as LoggedIn).user);
           default:
             return const Center(
               child: CircularProgressIndicator(),
