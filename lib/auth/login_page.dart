@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/auth/auth_cubit.dart';
+import 'package:notepad_flutter_mini/auth/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, this.error});
@@ -69,7 +70,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 onPressed: () {
-                  //TODO: navigate to register page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterPage(),
+                    ),
+                  );
                 },
               ),
             ],

@@ -21,9 +21,18 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Notepad Flutter Mini',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.lightBlue,
           ),
-          home: const AuthGate(),
+          home: Listener(
+            onPointerDown: (event) {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus &&
+                  currentFocus.focusedChild != null) {
+                currentFocus.focusedChild!.unfocus();
+              }
+            },
+            child: const AuthGate(),
+          ),
         ),
       ),
     );

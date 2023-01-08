@@ -19,8 +19,10 @@ class AuthGate extends StatelessWidget {
           case LoggedIn:
             return LandingPage(user: (state as LoggedIn).user);
           default:
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
         }
       },

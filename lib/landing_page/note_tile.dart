@@ -21,7 +21,6 @@ class NoteTile extends StatefulWidget {
 }
 
 class _NoteTileState extends State<NoteTile> {
-  var isPriority = false;
   @override
   Widget build(BuildContext context) {
     return GridTile(
@@ -42,9 +41,9 @@ class _NoteTileState extends State<NoteTile> {
               borderRadius: BorderRadius.all(
                 Radius.circular(5),
               ),
-              color: Colors.blue,
+              color: Colors.lightBlue,
             ),
-            width: MediaQuery.of(context).size.width / 2,
+            width: MediaQuery.of(context).size.width / widget.crossAxisCount,
             height: widget.isExpanded
                 ? MediaQuery.of(context).size.width /
                         widget.crossAxisCount *
@@ -78,12 +77,19 @@ class _NoteTileState extends State<NoteTile> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          widget.note.isPriority = !widget.note.isPriority;
-                          isPriority = widget.note.isPriority;
+                          setState(() {
+                            widget.note.isPriority = !widget.note.isPriority;
+                          });
                         },
                         child: widget.note.isPriority
-                            ? const Icon(Icons.star)
-                            : const Icon(Icons.star_border),
+                            ? const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                              )
+                            : const Icon(
+                                Icons.star_border,
+                                color: Colors.yellow,
+                              ),
                       ),
                     ],
                   ),

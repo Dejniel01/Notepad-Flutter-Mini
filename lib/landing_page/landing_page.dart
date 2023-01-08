@@ -18,20 +18,22 @@ class LandingPage extends StatelessWidget {
         builder: (context, state) {
           switch (state.runtimeType) {
             case LandingPageError:
-              return Center(
-                child: Text((state as LandingPageError).error),
-              );
-            case LandingPageLoaded:
-              return Center(
-                child: NoteTilesGrid(
-                  user: user,
-                  notes: (state as LandingPageLoaded).notes,
-                  isExpanded: state.isExpanded,
+              return Scaffold(
+                body: Center(
+                  child: Text((state as LandingPageError).error),
                 ),
               );
+            case LandingPageLoaded:
+              return NoteTilesGrid(
+                user: user,
+                notes: (state as LandingPageLoaded).notes,
+                isExpanded: state.isExpanded,
+              );
             default:
-              return const Center(
-                child: CircularProgressIndicator(),
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
           }
         },

@@ -13,7 +13,11 @@ class NoteDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Note details'),
+        title: const Text(
+          'Note details',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -28,7 +32,7 @@ class NoteDetails extends StatelessWidget {
             ),
           );
         },
-        child: const Icon(Icons.edit),
+        child: const Icon(Icons.edit, color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

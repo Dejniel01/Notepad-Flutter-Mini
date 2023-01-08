@@ -28,7 +28,11 @@ class _NoteFormState extends State<NoteForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: const TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -43,23 +47,26 @@ class _NoteFormState extends State<NoteForm> {
           }
           Navigator.pop(context);
         },
-        child: const Icon(Icons.done),
+        child: const Icon(Icons.done, color: Colors.white),
       ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              initialValue: widget.note.title,
-              decoration: const InputDecoration(labelText: 'Title'),
-              onSaved: (value) => _noteTitle = value,
-            ),
-            TextFormField(
-              initialValue: widget.note.content,
-              decoration: const InputDecoration(labelText: 'Content'),
-              onSaved: (value) => _noteContent = value,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                initialValue: widget.note.title,
+                decoration: const InputDecoration(labelText: 'Title'),
+                onSaved: (value) => _noteTitle = value,
+              ),
+              TextFormField(
+                initialValue: widget.note.content,
+                decoration: const InputDecoration(labelText: 'Content'),
+                onSaved: (value) => _noteContent = value,
+              ),
+            ],
+          ),
         ),
       ),
     );

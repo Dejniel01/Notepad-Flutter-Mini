@@ -62,7 +62,19 @@ class NotesController {
 
   static Future<List<Note>> getNotes(User user) async {
     await Future.delayed(const Duration(seconds: 2));
-    return _notes;
+    return _notes
+      ..sort((a, b) {
+        if (a.isPriority == b.isPriority) {
+          return b.modifyDate.compareTo(a.modifyDate);
+        }
+        if (a.isPriority) {
+          return -1;
+        }
+        if (b.isPriority) {
+          return 1;
+        }
+        return 0;
+      });
   }
 
   static Future<void> addNote(User user, Note note) async {
