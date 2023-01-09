@@ -21,40 +21,37 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(30.0),
         child: Form(
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const FlutterLogo(size: 128.0),
+              const SizedBox(height: 32.0),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(
-                  hintText: "Email",
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
+                decoration: const InputDecoration(
+                  labelText: "Email",
                 ),
               ),
               const SizedBox(height: 16.0),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
+                decoration: const InputDecoration(
+                  labelText: "Password",
                 ),
                 obscureText: true,
               ),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                child: const Text("Login"),
+                child: const Text(
+                  "Login",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                ),
                 onPressed: () {
                   BlocProvider.of<AuthCubit>(context).login(
                     _emailController.text,
@@ -63,10 +60,14 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.lightBlueAccent),
+                ),
                 child: const Text(
                   "Register",
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.white70,
                   ),
                 ),
                 onPressed: () {

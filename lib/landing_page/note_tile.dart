@@ -41,7 +41,16 @@ class _NoteTileState extends State<NoteTile> {
               borderRadius: BorderRadius.all(
                 Radius.circular(5),
               ),
-              color: Colors.lightBlue,
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[
+                  Colors.lightBlueAccent,
+                  Colors.lightBlue,
+                  Colors.lightBlueAccent,
+                ],
+                tileMode: TileMode.mirror,
+              ),
             ),
             width: MediaQuery.of(context).size.width / widget.crossAxisCount,
             height: widget.isExpanded

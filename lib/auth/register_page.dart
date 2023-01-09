@@ -17,35 +17,55 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text(
+          'Register',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Email'),
-              onSaved: (value) => _email = value,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const FlutterLogo(size: 128.0),
+                const SizedBox(height: 32.0),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Email'),
+                  onSaved: (value) => _email = value,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                  onSaved: (value) => _password = value,
+                ),
+                TextFormField(
+                    decoration:
+                        const InputDecoration(labelText: 'Repeat password'),
+                    obscureText: true),
+                const SizedBox(height: 16.0),
+                ElevatedButton(
+                  child: const Text(
+                    'Register',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      // TODO register
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
+              ],
             ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Password'),
-              obscureText: true,
-              onSaved: (value) => _password = value,
-            ),
-            TextFormField(
-                decoration: const InputDecoration(labelText: 'Repeat password'),
-                obscureText: true),
-            ElevatedButton(
-              child: const Text('Register'),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  // TODO register
-                  Navigator.pop(context);
-                }
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -50,22 +50,27 @@ class _NoteFormState extends State<NoteForm> {
         child: const Icon(Icons.done, color: Colors.white),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                initialValue: widget.note.title,
-                decoration: const InputDecoration(labelText: 'Title'),
-                onSaved: (value) => _noteTitle = value,
-              ),
-              TextFormField(
-                initialValue: widget.note.content,
-                decoration: const InputDecoration(labelText: 'Content'),
-                onSaved: (value) => _noteContent = value,
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextFormField(
+                  initialValue: widget.note.title,
+                  decoration: const InputDecoration(labelText: 'Title'),
+                  onSaved: (value) => _noteTitle = value,
+                  textInputAction: TextInputAction.next,
+                ),
+                TextFormField(
+                  initialValue: widget.note.content,
+                  decoration: const InputDecoration(labelText: 'Content'),
+                  onSaved: (value) => _noteContent = value,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                ),
+              ],
+            ),
           ),
         ),
       ),

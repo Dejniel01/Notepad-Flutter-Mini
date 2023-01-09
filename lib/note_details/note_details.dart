@@ -35,7 +35,7 @@ class NoteDetails extends StatelessWidget {
         child: const Icon(Icons.edit, color: Colors.white),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -43,16 +43,18 @@ class NoteDetails extends StatelessWidget {
             Text(
               note.title,
               style: const TextStyle(
-                fontSize: 15,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 16),
             Expanded(
               child: Text(
                 note.content,
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 16,
                 ),
+                textAlign: TextAlign.justify,
               ),
             ),
           ],

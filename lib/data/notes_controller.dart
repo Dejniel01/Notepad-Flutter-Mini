@@ -55,6 +55,56 @@ class NotesController {
       content: 'Content 8',
       modifyDate: DateTime.utc(2020, 1, 1),
     ),
+    Note(
+      id: 9,
+      title: 'Note 1',
+      content: 'Content 1',
+      modifyDate: DateTime.utc(2021, 1, 1),
+    ),
+    Note(
+      id: 10,
+      title: 'Note 2',
+      content:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at convallis velit. Integer tincidunt libero ante, id accumsan leo elementum molestie. Nullam aliquet orci eget pharetra vestibulum. Vivamus nunc dolor, maximus vitae orci tristique, auctor tempor lectus. Quisque facilisis lacus et velit feugiat tincidunt. Quisque eleifend dui a rutrum porta. Aenean eu convallis sem, at cursus tortor. Maecenas porttitor nec ligula eu consectetur. Mauris a lacus sit amet ex blandit tempor non sed dolor. Sed et auctor sem, consequat hendrerit lacus. Vivamus blandit nunc tortor, vitae rutrum risus sodales ultricies. In nisl mi, convallis quis libero quis, sollicitudin aliquam est.',
+      modifyDate: DateTime.utc(2020, 6, 6),
+    ),
+    Note(
+      id: 11,
+      title: 'This is a very long and interesting title',
+      content: 'Content 3',
+      modifyDate: DateTime.utc(2020, 1, 1),
+    ),
+    Note(
+      id: 12,
+      title: 'Note 4',
+      content: 'Content 4',
+      modifyDate: DateTime.utc(2020, 1, 1),
+    ),
+    Note(
+      id: 13,
+      title: 'This also is a very insteresting, and probably too long title',
+      content:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at convallis velit. Integer tincidunt libero ante, id accumsan leo elementum molestie. Nullam aliquet orci eget pharetra vestibulum. Vivamus nunc dolor, maximus vitae orci tristique, auctor tempor lectus. Quisque facilisis lacus et velit feugiat tincidunt. Quisque eleifend dui a rutrum porta. Aenean eu convallis sem, at cursus tortor. Maecenas porttitor nec ligula eu consectetur. Mauris a lacus sit amet ex blandit tempor non sed dolor. Sed et auctor sem, consequat hendrerit lacus. Vivamus blandit nunc tortor, vitae rutrum risus sodales ultricies. In nisl mi, convallis quis libero quis, sollicitudin aliquam est.',
+      modifyDate: DateTime.utc(2020, 1, 1),
+    ),
+    Note(
+      id: 14,
+      title: 'Note 6',
+      content: 'Content 6',
+      modifyDate: DateTime.utc(2020, 1, 1),
+    ),
+    Note(
+      id: 15,
+      title: 'Note 7',
+      content: 'Content 7',
+      modifyDate: DateTime.utc(2020, 1, 1),
+    ),
+    Note(
+      id: 16,
+      title: 'Note 8',
+      content: 'Content 8',
+      modifyDate: DateTime.utc(2020, 1, 1),
+    ),
   ];
 
 // temporary before firebase
@@ -92,5 +142,11 @@ class NotesController {
     await Future.delayed(const Duration(seconds: 2));
     final index = _notes.indexWhere((element) => element.id == note.id);
     _notes[index] = note;
+  }
+
+  static Future<void> setPriority(Note note, bool isPriority) async {
+    await Future.delayed(const Duration(seconds: 2));
+    final index = _notes.indexWhere((element) => element.id == note.id);
+    _notes[index].isPriority = isPriority;
   }
 }

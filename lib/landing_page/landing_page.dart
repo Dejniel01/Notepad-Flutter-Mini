@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/data/user.dart';
 import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
+import 'package:notepad_flutter_mini/landing_page/landing_page_scaffold.dart';
 import 'package:notepad_flutter_mini/landing_page/note_tiles_grid.dart';
 
 class LandingPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class LandingPage extends StatelessWidget {
                 ),
               );
             case LandingPageLoaded:
-              return NoteTilesGrid(
+              return LandingPageScaffold(
                 user: user,
                 notes: (state as LandingPageLoaded).notes,
                 isExpanded: state.isExpanded,
