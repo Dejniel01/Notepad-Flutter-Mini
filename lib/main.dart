@@ -8,13 +8,10 @@ import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  print(1);
   WidgetsFlutterBinding.ensureInitialized();
-  print(2);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print(3);
   runApp(const MyApp());
 }
 
@@ -24,7 +21,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print(4);
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: BlocProvider(
