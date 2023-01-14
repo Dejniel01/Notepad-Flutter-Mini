@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
 
@@ -12,7 +12,7 @@ class NoteForm extends StatefulWidget {
   });
 
   final String title;
-  final User user;
+  final DataBaseUser user;
   final Note note;
 
   @override

@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
 import 'package:notepad_flutter_mini/note_details/note_details.dart';
@@ -14,7 +14,7 @@ class NoteTile extends StatefulWidget {
 
   final bool isExpanded;
   final Note note;
-  final User user;
+  final DataBaseUser user;
   final int crossAxisCount;
 
   @override

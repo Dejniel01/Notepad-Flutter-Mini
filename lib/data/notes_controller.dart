@@ -1,12 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NotesController {
-  static Future<List<Note>> getNotes(User user) async {
+  static Future<List<Note>> getNotes(DataBaseUser user) async {
     final notesFromDb = await FirebaseFirestore.instance
         .collection('notes')
-        .where('userId', isEqualTo: user.uid)
+        .where('userId', isEqualTo: user.id)
         .get();
     final notes =
         notesFromDb.docs.map((e) => Note.fromMap(e.data(), e.id)).toList();
@@ -25,16 +25,20 @@ class NotesController {
       });
   }
 
-  static Future<void> addNote(User user, Note note) async {
+  static Future<void> addNote(DataBaseUser user, Note note) async {
     await FirebaseFirestore.instance
         .collection('notes')
-        .add(note.toMap(user.uid));
+        .add(note.toMap(user.id));
   }
 
-  static Future<void> updateNote(User user, Note note) async {
+  static Future<void> updateNote(DataBaseUser user, Note note) async {
     await FirebaseFirestore.instance
         .collection('notes')
         .doc(note.id)
-        .update(note.toMap(user.uid));
+        .update(note.toMap(user.id));
+  }
+
+  static Future<void> deleteNote(Note note) async {
+    await FirebaseFirestore.instance.collection('notes').doc(note.id).delete();
   }
 }

@@ -17,96 +17,105 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  final loginKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width < 600
-            ? MediaQuery.of(context).size.width
-            : 600,
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Form(
-            key: _formKey,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const FlutterLogo(size: 128.0),
-                    const SizedBox(height: 32.0),
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: "Email",
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter an email";
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _passwordController,
-                      decoration: const InputDecoration(
-                        labelText: "Password",
-                      ),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter a password";
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 16.0),
-                    if (widget.error != null)
-                      Text(
-                        widget.error!,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    const SizedBox(height: 16.0),
-                    ElevatedButton(
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
+      body: Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width < 600
+              ? MediaQuery.of(context).size.width
+              : 600,
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Form(
+              key: _formKey,
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const FlutterLogo(size: 128.0),
+                      const SizedBox(height: 32.0),
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          labelText: "Email",
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter an email";
+                          }
+                          return null;
+                        },
                       ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthCubit>(context).login(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-                        }
-                      },
-                    ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.lightBlueAccent),
-                      ),
-                      child: const Text(
-                        "Register",
-                        style: TextStyle(
-                          color: Colors.white70,
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                        controller: _passwordController,
+                        decoration: const InputDecoration(
+                          labelText: "Password",
                         ),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter a password";
+                          }
+                          return null;
+                        },
+                        onFieldSubmitted: (value) =>
+                            (loginKey.currentWidget! as ElevatedButton)
+                                .onPressed!(),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
+                      const SizedBox(height: 16.0),
+                      if (widget.error != null)
+                        Text(
+                          widget.error!,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      const SizedBox(height: 16.0),
+                      ElevatedButton(
+                        key: loginKey,
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
                           ),
-                        );
-                      },
-                    ),
-                  ],
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            BlocProvider.of<AuthCubit>(context).login(
+                              _emailController.text,
+                              _passwordController.text,
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.lightBlueAccent),
+                        ),
+                        child: const Text(
+                          "Register",
+                          style: TextStyle(
+                            color: Colors.white70,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:notepad_flutter_mini/data/user.dart';
+import 'package:notepad_flutter_mini/data/database_user.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const LoggedOut());
@@ -15,12 +16,20 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<User> _login(String email, String password) async {
-    final userCred = await FirebaseAuth.instance.signInWithEmailAndPassword(
+  Future<DataBaseUser> _login(String email, String password) async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-    return userCred.user!;
+
+    final userFromDb = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get();
+
+    return DataBaseUser.fromMap(
+        userFromDb.docs.first.data(), userFromDb.docs.first.id);
   }
 }
 
@@ -47,5 +56,5 @@ class LoggedIn extends AuthState {
   const LoggedIn({
     required this.user,
   });
-  final User user;
+  final DataBaseUser user;
 }

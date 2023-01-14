@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
 
@@ -10,7 +10,7 @@ class LandingPageCubit extends Cubit<LandingPageState> {
 
   final rng = Random();
 
-  Future<void> load(User user) async {
+  Future<void> load(DataBaseUser user) async {
     emit(const LandingPageLoading());
     try {
       final notes = await NotesController.getNotes(user);
