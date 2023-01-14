@@ -1,7 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
-import 'package:notepad_flutter_mini/data/user.dart';
 
 class NoteForm extends StatefulWidget {
   const NoteForm({

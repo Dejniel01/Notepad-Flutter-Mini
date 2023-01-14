@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
-import 'package:notepad_flutter_mini/data/user.dart';
 import 'package:notepad_flutter_mini/landing_page/note_tiles_grid.dart';
 import 'package:notepad_flutter_mini/note_details/note_form.dart';
 

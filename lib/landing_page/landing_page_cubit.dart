@@ -1,9 +1,9 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
-import 'package:notepad_flutter_mini/data/user.dart';
 
 class LandingPageCubit extends Cubit<LandingPageState> {
   LandingPageCubit() : super(const LandingPageLoading());

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "194755288310",
+    "project_id": "notepad-flutter-mini",
+    "storage_bucket": "notepad-flutter-mini.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194755288310:android:47ba1880c0f4da78d220d7",
+        "android_client_info": {
+          "package_name": "com.example.notepad_flutter_mini"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194755288310-a86eu834d3kgv92bnllohd06hma63tgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAwf5-HPZ5KNjvhZom08m15sbn2iCl4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194755288310-a86eu834d3kgv92bnllohd06hma63tgn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "194755288310-ukbls7sab1vbfek7mqqq3cbtv7h5fqd8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.notepadFlutterMini"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

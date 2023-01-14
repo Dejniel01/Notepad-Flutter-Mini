@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -58,7 +60,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      // TODO register
+
+                      FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: _email!,
+                        password: _password!,
+                      );
+
                       Navigator.pop(context);
                     }
                   },

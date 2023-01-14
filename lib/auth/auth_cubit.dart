@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notepad_flutter_mini/data/user.dart';
+// import 'package:notepad_flutter_mini/data/user.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const LoggedOut());
@@ -15,8 +16,11 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<User> _login(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
-    return User(id: 1, email: email, name: 'John Doe');
+    final userCred = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return userCred.user!;
   }
 }
 

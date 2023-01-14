@@ -44,6 +44,12 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
               ),
               const SizedBox(height: 16.0),
+              if (widget.error != null)
+                Text(
+                  widget.error!,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 child: const Text(
                   "Login",
