@@ -20,7 +20,10 @@ class LandingPage extends StatelessWidget {
             case LandingPageError:
               return Scaffold(
                 body: Center(
-                  child: Text((state as LandingPageError).error),
+                  child: Text(
+                    (state as LandingPageError).error,
+                    style: const TextStyle(color: Colors.red),
+                  ),
                 ),
               );
             case LandingPageLoaded:

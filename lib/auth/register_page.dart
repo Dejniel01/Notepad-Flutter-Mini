@@ -47,82 +47,88 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const FlutterLogo(size: 128.0),
-                    const SizedBox(height: 32.0),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Email'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter an email';
-                        }
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width < 600
+            ? MediaQuery.of(context).size.width
+            : 600,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const FlutterLogo(size: 128.0),
+                      const SizedBox(height: 32.0),
+                      TextFormField(
+                        decoration: const InputDecoration(labelText: 'Email'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter an email';
+                          }
 
-                        if (!widget.mailRegex.hasMatch(value.trim())) {
-                          return 'Please enter a valid email';
-                        }
+                          if (!widget.mailRegex.hasMatch(value.trim())) {
+                            return 'Please enter a valid email';
+                          }
 
-                        _email = value;
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Password'),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        if (!widget.passwordRegex.hasMatch(value)) {
-                          return 'Password must be at least 8 characters long and contain at least one letter and one number';
-                        }
-                        _password = value;
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      decoration:
-                          const InputDecoration(labelText: 'Repeat password'),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please repeat the password';
-                        }
-                        if (value != _password) {
-                          return 'Passwords do not match';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 16.0),
-                    if (_error != null)
-                      Text(
-                        _error!,
-                        style: const TextStyle(color: Colors.red),
+                          _email = value;
+                          return null;
+                        },
                       ),
-                    const SizedBox(height: 16.0),
-                    ElevatedButton(
-                      child: const Text(
-                        'Register',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
+                      TextFormField(
+                        decoration:
+                            const InputDecoration(labelText: 'Password'),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a password';
+                          }
+                          if (!widget.passwordRegex.hasMatch(value)) {
+                            return 'Password must be at least 8 characters long and contain at least one letter and one number';
+                          }
+                          _password = value;
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        decoration:
+                            const InputDecoration(labelText: 'Repeat password'),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please repeat the password';
+                          }
+                          if (value != _password) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      if (_error != null)
+                        Text(
+                          _error!,
+                          style: const TextStyle(color: Colors.red),
                         ),
+                      const SizedBox(height: 16.0),
+                      ElevatedButton(
+                        child: const Text(
+                          'Register',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                        onPressed: () async {
+                          _register().then(
+                              (value) => value ? Navigator.pop(context) : null);
+                        },
                       ),
-                      onPressed: () async {
-                        _register().then(
-                            (value) => value ? Navigator.pop(context) : null);
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

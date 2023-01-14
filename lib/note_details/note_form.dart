@@ -40,10 +40,10 @@ class _NoteFormState extends State<NoteForm> {
           widget.note.title = _noteTitle!;
           widget.note.content = _noteContent!;
           widget.note.modifyDate = DateTime.now();
-          if (widget.note.id == -1) {
+          if (widget.note.id == '') {
             NotesController.addNote(widget.user, widget.note);
           } else {
-            NotesController.updateNote(widget.note);
+            NotesController.updateNote(widget.user, widget.note);
           }
           Navigator.pop(context);
         },

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
+import 'package:notepad_flutter_mini/data/notes_controller.dart';
 import 'package:notepad_flutter_mini/note_details/note_details.dart';
 
 class NoteTile extends StatefulWidget {
@@ -21,6 +22,8 @@ class NoteTile extends StatefulWidget {
 }
 
 class _NoteTileState extends State<NoteTile> {
+  bool isRequestOngoing = false;
+
   @override
   Widget build(BuildContext context) {
     return GridTile(
@@ -86,9 +89,15 @@ class _NoteTileState extends State<NoteTile> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            widget.note.isPriority = !widget.note.isPriority;
-                          });
+                          if (!isRequestOngoing) {
+                            isRequestOngoing = true;
+                            setState(() {
+                              widget.note.isPriority = !widget.note.isPriority;
+                              NotesController.updateNote(
+                                      widget.user, widget.note)
+                                  .whenComplete(() => isRequestOngoing = false);
+                            });
+                          }
                         },
                         child: widget.note.isPriority
                             ? const Icon(

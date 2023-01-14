@@ -64,7 +64,7 @@ class _LandingPageScaffoldState extends State<LandingPageScaffold> {
                 title: 'New note',
                 user: widget.user,
                 note: Note(
-                  id: -1,
+                  id: '',
                   title: '',
                   content: '',
                   modifyDate: DateTime.now(),
