@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
@@ -50,9 +51,9 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Register',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          AppLocalizations.of(context)!.register,
+          style: const TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -74,14 +75,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         const FlutterLogo(size: 128.0),
                         const SizedBox(height: 32.0),
                         TextFormField(
-                          decoration: const InputDecoration(labelText: 'Email'),
+                          decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!.email),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter an email';
+                              return AppLocalizations.of(context)!.pleaseEmail;
                             }
 
                             if (!widget.mailRegex.hasMatch(value.trim())) {
-                              return 'Please enter a valid email';
+                              return AppLocalizations.of(context)!
+                                  .pleaseValidEmail;
                             }
 
                             _email = value;
@@ -89,30 +92,36 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                         ),
                         TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: 'Password'),
+                          decoration: InputDecoration(
+                              labelText:
+                                  AppLocalizations.of(context)!.password),
                           obscureText: true,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter a password';
+                              return AppLocalizations.of(context)!
+                                  .pleasePassword;
                             }
                             if (!widget.passwordRegex.hasMatch(value)) {
-                              return 'Password must be at least 8 characters long and contain at least one letter and one number';
+                              return AppLocalizations.of(context)!
+                                  .pleaseStrongPassword;
                             }
                             _password = value;
                             return null;
                           },
                         ),
                         TextFormField(
-                          decoration: const InputDecoration(
-                              labelText: 'Repeat password'),
+                          decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!
+                                  .confirmPassword),
                           obscureText: true,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please repeat the password';
+                              return AppLocalizations.of(context)!
+                                  .pleaseConfirmPassword;
                             }
                             if (value != _password) {
-                              return 'Passwords do not match';
+                              return AppLocalizations.of(context)!
+                                  .passwordsNotMatch;
                             }
                             return null;
                           },
@@ -125,9 +134,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         const SizedBox(height: 16.0),
                         ElevatedButton(
-                          child: const Text(
-                            'Register',
-                            style: TextStyle(
+                          child: Text(
+                            AppLocalizations.of(context)!.register,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
                             ),

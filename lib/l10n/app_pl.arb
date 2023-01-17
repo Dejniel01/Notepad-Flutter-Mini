@@ -1,0 +1,23 @@
+{
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
+    "email": "Email",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "pleaseEmail": "Podaj email",
+    "pleasePassword": "Podaj hasło",
+    "pleaseConfirmPassword": "Potwierdź hasło",
+    "passwordsNotMatch": "Hasła nie są takie same",
+    "pleaseValidEmail": "Podaj prawidłowy email",
+    "pleaseStrongPassword": "Hasło musi mieć conajmniej 8 znaków i zawierać przynajmniej jedną literę i jedną cyfrę",
+    "search": "Szukaj",
+    "newNote": "Nowa notatka",
+    "editNote": "Edytuj notatkę",
+    "noteDetails": "Szczegóły notatki",
+    "title": "Tytuł",
+    "content": "Treść",
+    "sortDateLatest": "Sortuj po dacie (najnowsze)",
+    "sortDateOldest": "Sortuj po dacie (najstarsze)",
+    "sortTitleAZ": "Sortuj po tytule (A-Z)",
+    "sortTitleZA": "Sortuj po tytule (Z-A)"
+}

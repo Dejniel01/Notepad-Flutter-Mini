@@ -5,6 +5,7 @@ import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
 import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
 import 'package:notepad_flutter_mini/note_details/note_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NoteDetails extends StatelessWidget {
   const NoteDetails({super.key, required this.note, required this.user});
@@ -16,9 +17,9 @@ class NoteDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Note details',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          AppLocalizations.of(context)!.noteDetails,
+          style: const TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -26,6 +27,7 @@ class NoteDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: "deleteButton",
             onPressed: () {
               NotesController.deleteNote(note);
               Navigator.pop(context);
@@ -35,12 +37,13 @@ class NoteDetails extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
+            heroTag: "editButton",
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => NoteForm(
-                    title: 'Edit note',
+                    title: AppLocalizations.of(context)!.editNote,
                     user: user,
                     note: note,
                   ),
@@ -63,7 +66,7 @@ class NoteDetails extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => NoteForm(
-                      title: 'Edit note',
+                      title: AppLocalizations.of(context)!.editNote,
                       user: user,
                       note: note,
                       isTitleFocused: true,
@@ -87,7 +90,7 @@ class NoteDetails extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => NoteForm(
-                        title: 'Edit note',
+                        title: AppLocalizations.of(context)!.editNote,
                         user: user,
                         note: note,
                         isContentFocused: true,

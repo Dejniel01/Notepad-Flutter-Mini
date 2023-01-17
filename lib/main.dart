@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/auth/auth_cubit.dart';
 import 'package:notepad_flutter_mini/auth/auth_gate.dart';
 import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'firebase_options.dart';
 
@@ -30,6 +32,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.lightBlue,
           ),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale("pl"),
           // To properly unfocus text fields when tapping outside of them.
           home: Listener(
             onPointerDown: (event) {

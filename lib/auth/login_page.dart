@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/auth/auth_cubit.dart';
 import 'package:notepad_flutter_mini/auth/register_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, this.error});
@@ -41,12 +42,12 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 32.0),
                       TextFormField(
                         controller: _emailController,
-                        decoration: const InputDecoration(
-                          labelText: "Email",
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.email,
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Please enter an email";
+                            return AppLocalizations.of(context)!.pleaseEmail;
                           }
                           return null;
                         },
@@ -54,13 +55,13 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 16.0),
                       TextFormField(
                         controller: _passwordController,
-                        decoration: const InputDecoration(
-                          labelText: "Password",
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.password,
                         ),
                         obscureText: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Please enter a password";
+                            return AppLocalizations.of(context)!.pleasePassword;
                           }
                           return null;
                         },
@@ -77,9 +78,9 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 16.0),
                       ElevatedButton(
                         key: loginKey,
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
+                        child: Text(
+                          AppLocalizations.of(context)!.login,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18.0,
                           ),
@@ -99,9 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                           backgroundColor:
                               MaterialStateProperty.all(Colors.lightBlueAccent),
                         ),
-                        child: const Text(
-                          "Register",
-                          style: TextStyle(
+                        child: Text(
+                          AppLocalizations.of(context)!.register,
+                          style: const TextStyle(
                             color: Colors.white70,
                           ),
                         ),

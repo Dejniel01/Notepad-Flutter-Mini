@@ -1,0 +1,23 @@
+{
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "pleaseEmail": "Please enter your email",
+    "pleasePassword": "Please enter your password",
+    "pleaseConfirmPassword": "Please confirm your password",
+    "passwordsNotMatch": "Passwords do not match",
+    "pleaseValidEmail": "Please enter a valid email",
+    "pleaseStrongPassword": "Password must be at least 8 characters long and contain at least one letter and one number",
+    "search": "Search",
+    "newNote": "New note",
+    "editNote": "Edit note",
+    "noteDetails": "Note details",
+    "title": "Title",
+    "content": "Content",
+    "sortDateLatest": "Sort by date (from the latest)",
+    "sortDateOldest": "Sort by date (from the oldest)",
+    "sortTitleAZ": "Sort by title (A-Z)",
+    "sortTitleZA": "Sort by title (Z-A)"
+}

@@ -4,6 +4,7 @@ import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
 import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NoteForm extends StatefulWidget {
   const NoteForm({
@@ -65,7 +66,8 @@ class _NoteFormState extends State<NoteForm> {
             children: [
               TextFormField(
                 initialValue: widget.note.title,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.title),
                 onSaved: (value) => _noteTitle = value,
                 textInputAction: TextInputAction.next,
                 autofocus: widget.isTitleFocused,
@@ -75,8 +77,8 @@ class _NoteFormState extends State<NoteForm> {
                   builder: (_, __) {
                     return TextFormField(
                       initialValue: widget.note.content,
-                      decoration: const InputDecoration(
-                        labelText: 'Content',
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.content,
                         alignLabelWithHint: true,
                       ),
                       onSaved: (value) => _noteContent = value,

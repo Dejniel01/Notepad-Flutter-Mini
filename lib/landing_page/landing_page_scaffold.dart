@@ -3,6 +3,7 @@ import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/landing_page/note_tiles_grid.dart';
 import 'package:notepad_flutter_mini/note_details/note_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LandingPageScaffold extends StatefulWidget {
   const LandingPageScaffold({
@@ -38,12 +39,12 @@ class _LandingPageScaffoldState extends State<LandingPageScaffold> {
                   color: Colors.white,
                 ),
                 cursorColor: Colors.white,
-                decoration: const InputDecoration(
-                  hintText: 'Search',
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(context)!.search,
                   border: InputBorder.none,
                   prefixIconColor: Colors.white,
-                  prefixIcon: Icon(Icons.search, color: Colors.white),
-                  hintStyle: TextStyle(
+                  prefixIcon: const Icon(Icons.search, color: Colors.white),
+                  hintStyle: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
@@ -72,13 +73,13 @@ class _LandingPageScaffoldState extends State<LandingPageScaffold> {
                         case 1:
                           return a.modifyDate.compareTo(b.modifyDate);
                         case 2:
-                          return b.title
-                              .toLowerCase()
-                              .compareTo(a.title.toLowerCase());
-                        case 3:
                           return a.title
                               .toLowerCase()
                               .compareTo(b.title.toLowerCase());
+                        case 3:
+                          return b.title
+                              .toLowerCase()
+                              .compareTo(a.title.toLowerCase());
                       }
                     }
                     if (a.isPriority) {
@@ -95,131 +96,29 @@ class _LandingPageScaffoldState extends State<LandingPageScaffold> {
                     CheckedPopupMenuItem(
                       value: 0,
                       checked: selectedSorting == 0,
-                      child: const Text('Sort by date (from newest)'),
+                      child: Text(AppLocalizations.of(context)!.sortDateLatest),
                     ),
                     CheckedPopupMenuItem(
                       value: 1,
                       checked: selectedSorting == 1,
-                      child: const Text('Sort by date (from oldest)'),
+                      child: Text(AppLocalizations.of(context)!.sortDateOldest),
                     ),
                     CheckedPopupMenuItem(
                       value: 2,
                       checked: selectedSorting == 2,
-                      child: const Text('Sort by title (Z-A)'),
+                      child: Text(AppLocalizations.of(context)!.sortTitleAZ),
                     ),
                     CheckedPopupMenuItem(
                       value: 3,
                       checked: selectedSorting == 3,
-                      child: const Text('Sort by title (A-Z)'),
+                      child: Text(AppLocalizations.of(context)!.sortTitleZA),
                     ),
                   ]),
               child: const Icon(
                 Icons.sort,
                 color: Colors.white,
               ),
-            )
-            // GestureDetector(
-            //   onTap: () {
-            //     showMenu(
-            //       context: context,
-            //       position: const RelativeRect.fromLTRB(0, 0, 0, 0),
-            //       items: [
-            //         PopupMenuItem(
-            //           value: 0,
-            //           onTap: (() {
-            //             setState(
-            //               () {
-            //                 filteredNotes!.sort((a, b) {
-            //                   if (a.isPriority == b.isPriority) {
-            //                     return b.modifyDate.compareTo(a.modifyDate);
-            //                   }
-            //                   if (a.isPriority) {
-            //                     return -1;
-            //                   }
-            //                   if (b.isPriority) {
-            //                     return 1;
-            //                   }
-            //                   return 0;
-            //                 });
-            //               },
-            //             );
-            //           }),
-            //           child: const Text('Sort by date descending'),
-            //         ),
-            //         PopupMenuItem(
-            //           value: 1,
-            //           onTap: (() {
-            //             setState(
-            //               () {
-            //                 filteredNotes!.sort((a, b) {
-            //                   if (a.isPriority == b.isPriority) {
-            //                     return a.modifyDate.compareTo(b.modifyDate);
-            //                   }
-            //                   if (a.isPriority) {
-            //                     return -1;
-            //                   }
-            //                   if (b.isPriority) {
-            //                     return 1;
-            //                   }
-            //                   return 0;
-            //                 });
-            //               },
-            //             );
-            //           }),
-            //           child: const Text('Sort by date ascending'),
-            //         ),
-            //         PopupMenuItem(
-            //           value: 2,
-            //           onTap: (() {
-            //             setState(
-            //               () {
-            //                 filteredNotes!.sort((a, b) {
-            //                   if (a.isPriority == b.isPriority) {
-            //                     return a.title.compareTo(b.title);
-            //                   }
-            //                   if (a.isPriority) {
-            //                     return -1;
-            //                   }
-            //                   if (b.isPriority) {
-            //                     return 1;
-            //                   }
-            //                   return 0;
-            //                 });
-            //               },
-            //             );
-            //           }),
-            //           child: const Text('Sort by title ascending'),
-            //         ),
-            //         PopupMenuItem(
-            //           value: 3,
-            //           onTap: (() {
-            //             setState(
-            //               () {
-            //                 filteredNotes!.sort((a, b) {
-            //                   if (a.isPriority == b.isPriority) {
-            //                     return b.title.compareTo(a.title);
-            //                   }
-            //                   if (a.isPriority) {
-            //                     return -1;
-            //                   }
-            //                   if (b.isPriority) {
-            //                     return 1;
-            //                   }
-            //                   return 0;
-            //                 });
-            //               },
-            //             );
-            //           }),
-            //           child: const Text('Sort by title descending'),
-            //         ),
-            //       ],
-            //     );
-            //   },
-            //   child: const Icon(
-            //     Icons.sort,
-            //     color: Colors.white,
-            //   ),
-            // ),
+            ),
           ],
         ),
       ),
@@ -229,7 +128,7 @@ class _LandingPageScaffoldState extends State<LandingPageScaffold> {
             context,
             MaterialPageRoute(
               builder: (context) => NoteForm(
-                title: 'New note',
+                title: AppLocalizations.of(context)!.newNote,
                 user: widget.user,
                 note: Note(
                   id: '',
