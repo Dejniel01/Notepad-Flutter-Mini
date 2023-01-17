@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
+import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
 import 'package:notepad_flutter_mini/note_details/note_form.dart';
 
 class NoteDetails extends StatelessWidget {
@@ -27,6 +29,7 @@ class NoteDetails extends StatelessWidget {
             onPressed: () {
               NotesController.deleteNote(note);
               Navigator.pop(context);
+              BlocProvider.of<LandingPageCubit>(context).load(user);
             },
             child: const Icon(Icons.delete, color: Colors.white),
           ),
@@ -54,21 +57,51 @@ class NoteDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              note.title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NoteForm(
+                      title: 'Edit note',
+                      user: user,
+                      note: note,
+                      isTitleFocused: true,
+                    ),
+                  ),
+                );
+              },
+              child: Text(
+                note.title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 16),
             Expanded(
-              child: Text(
-                note.content,
-                style: const TextStyle(
-                  fontSize: 16,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NoteForm(
+                        title: 'Edit note',
+                        user: user,
+                        note: note,
+                        isContentFocused: true,
+                      ),
+                    ),
+                  );
+                },
+                child: Text(
+                  note.content,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.justify,
                 ),
-                textAlign: TextAlign.justify,
               ),
             ),
           ],

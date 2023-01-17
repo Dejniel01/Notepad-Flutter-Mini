@@ -24,9 +24,9 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width < 600
+          width: MediaQuery.of(context).size.width < 450
               ? MediaQuery.of(context).size.width
-              : 600,
+              : 450,
           child: Padding(
             padding: const EdgeInsets.all(30.0),
             child: Form(

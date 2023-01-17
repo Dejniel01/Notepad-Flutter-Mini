@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notepad_flutter_mini/data/database_user.dart';
 import 'package:notepad_flutter_mini/data/note.dart';
 import 'package:notepad_flutter_mini/data/notes_controller.dart';
+import 'package:notepad_flutter_mini/landing_page/landing_page_cubit.dart';
 
 class NoteForm extends StatefulWidget {
   const NoteForm({
@@ -9,11 +11,15 @@ class NoteForm extends StatefulWidget {
     required this.title,
     required this.note,
     required this.user,
+    this.isTitleFocused = false,
+    this.isContentFocused = false,
   });
 
   final String title;
   final DataBaseUser user;
   final Note note;
+  final bool isTitleFocused;
+  final bool isContentFocused;
 
   @override
   State<NoteForm> createState() => _NoteFormState();
@@ -44,8 +50,10 @@ class _NoteFormState extends State<NoteForm> {
             NotesController.addNote(widget.user, widget.note);
           } else {
             NotesController.updateNote(widget.user, widget.note);
+            Navigator.pop(context);
           }
           Navigator.pop(context);
+          BlocProvider.of<LandingPageCubit>(context).load(widget.user);
         },
         child: const Icon(Icons.done, color: Colors.white),
       ),
@@ -53,24 +61,34 @@ class _NoteFormState extends State<NoteForm> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                TextFormField(
-                  initialValue: widget.note.title,
-                  decoration: const InputDecoration(labelText: 'Title'),
-                  onSaved: (value) => _noteTitle = value,
-                  textInputAction: TextInputAction.next,
+          child: Column(
+            children: [
+              TextFormField(
+                initialValue: widget.note.title,
+                decoration: const InputDecoration(labelText: 'Title'),
+                onSaved: (value) => _noteTitle = value,
+                textInputAction: TextInputAction.next,
+                autofocus: widget.isTitleFocused,
+              ),
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (_, __) {
+                    return TextFormField(
+                      initialValue: widget.note.content,
+                      decoration: const InputDecoration(
+                        labelText: 'Content',
+                        alignLabelWithHint: true,
+                      ),
+                      onSaved: (value) => _noteContent = value,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      expands: true,
+                      autofocus: widget.isContentFocused,
+                    );
+                  },
                 ),
-                TextFormField(
-                  initialValue: widget.note.content,
-                  decoration: const InputDecoration(labelText: 'Content'),
-                  onSaved: (value) => _noteContent = value,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

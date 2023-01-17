@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -65,5 +59,25 @@ class DefaultFirebaseOptions {
     messagingSenderId: '194755288310',
     projectId: 'notepad-flutter-mini',
     storageBucket: 'notepad-flutter-mini.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDVJiQMB_8KhzDjEJTzaJksF8a76MOoxnU',
+    appId: '1:194755288310:ios:df86514016211402d220d7',
+    messagingSenderId: '194755288310',
+    projectId: 'notepad-flutter-mini',
+    storageBucket: 'notepad-flutter-mini.appspot.com',
+    iosClientId: '194755288310-ukbls7sab1vbfek7mqqq3cbtv7h5fqd8.apps.googleusercontent.com',
+    iosBundleId: 'com.example.notepadFlutterMini',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDVJiQMB_8KhzDjEJTzaJksF8a76MOoxnU',
+    appId: '1:194755288310:ios:df86514016211402d220d7',
+    messagingSenderId: '194755288310',
+    projectId: 'notepad-flutter-mini',
+    storageBucket: 'notepad-flutter-mini.appspot.com',
+    iosClientId: '194755288310-ukbls7sab1vbfek7mqqq3cbtv7h5fqd8.apps.googleusercontent.com',
+    iosBundleId: 'com.example.notepadFlutterMini',
   );
 }
